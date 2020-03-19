@@ -606,9 +606,8 @@ class Spotify(object):
         plid = self._get_id("playlist", playlist_id)
         ftracks = [self._get_uri("track", tid) for tid in tracks]
         payload = {"uris": ftracks}
-        return self._put(
-            "users/%s/playlists/%s/tracks" % (user, plid), payload=payload
-        )
+        user_prefix = "user/%s/".format(user) if user else ""
+        return self._put("%splaylists/%s/tracks" % (user_prefix, plid), payload=payload)
 
     def user_playlist_reorder_tracks(
         self,

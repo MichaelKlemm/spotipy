@@ -119,8 +119,8 @@ class Spotify(object):
             )
 
     def _auth_headers(self):
-        if self._auth:
-            return {"Authorization": "Bearer {0}".format(self._auth)}
+        if "access_token" in self._auth:
+            return {"Authorization": "Bearer {0}".format(self._auth["access_token"])}
         elif self.auth_manager:
             token = self.auth_manager.get_access_token(as_dict=False)
             return {"Authorization": "Bearer {0}".format(token)}

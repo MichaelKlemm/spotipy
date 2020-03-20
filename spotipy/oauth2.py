@@ -242,7 +242,7 @@ class SpotifyOAuth(SpotifyAuthBase):
         if self.cache_path:
             try:
                 f = open(self.cache_path, "w")
-                f.write(json.dumps(token_info))
+                f.write(json.dumps(token_info, indent=2))
                 f.close()
             except IOError:
                 self._warn("couldn't write token cache to " + self.cache_path)
